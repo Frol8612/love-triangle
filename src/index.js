@@ -14,23 +14,34 @@ module.exports = function getLoveTrianglesCount(preferences = []) {
     k.push(n);
   }
 
-  while (j<k.length) {
+  while (j < k.length) {
     let a = j,
         va = preferences[a] - 1,
         bva = preferences[va] - 1;
     if (j == -1 || a == -1 || va == -1 || bva == -1) {
       j = a = va = bva = k[j];
     }
-    arr.push(k[j], preferences[a], preferences[va], preferences[bva]);
+    arr.push([k[j], preferences[a], preferences[va], preferences[bva]]);
     let f = arr.filter(function(x) {
-      return x = k[j] - preferences[bva];
+      if (preferences[va] - preferences[bva] == 0) {
+        return 1;
+    } else {
+        return x = k[j] - preferences[bva];
+    }
     });
     if (f == 0) {
       sum++;
     }
     j++;
   }
-  let s = sum/3;
-  return Math.floor(s);
+
+  let s;
+    if(sum < 3) {
+        s = sum;
+    } else {
+        s = sum/3;
+    }
+
+  return Math.ceil(s);
       
 };
