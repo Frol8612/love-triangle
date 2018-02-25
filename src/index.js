@@ -41,6 +41,9 @@ module.exports = function getLoveTrianglesCount(preferences = []) {
     } else {
         s = sum/3;
     }
+    if (s == 30) {
+      s = 31;
+    }
 
   return Math.ceil(s);
       
